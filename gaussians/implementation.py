@@ -63,7 +63,7 @@ elif RUN_PIPELINE == 2:
 
     print("Running pipeline 2")
 
-    APPLE_CLASSIFIER = BinaryClassifier(gabor=False, log=True)
+    APPLE_CLASSIFIER = BinaryClassifier(gabor=True, log=True)
     APPLE_CLASSIFIER.load_train_images(TRAIN_IMAGES, TRAIN_TRUTHS, display=False)
-    APPLE_CLASSIFIER.tune(TUNE_IMAGES, TUNE_TRUTHS, max_k=5, display=False)
+    APPLE_CLASSIFIER.tune(TUNE_IMAGES, TUNE_TRUTHS, max_k=5, display=True)
     APPLE_CLASSIFIER.test(TEST_IMAGES, truths=TEST_TRUTHS, display=True)

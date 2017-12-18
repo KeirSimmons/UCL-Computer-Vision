@@ -1,7 +1,3 @@
-## Precursor
-
-Same as with the other code within this repository, this was heavily inspired by the content I have studied on UCL's Machine Vision module, as part of the MSc in Computational Statistics & Machine Learning masters degree programme.
-
 ## Introduction
 
 Performs pixel-by-pixel binary classification of images using a mixture of gaussians model over the pixel data. Although not a state-of-the-art algorithm by any means, it could be used in the pipeline of a rudimentary classification or image segmentation program.
@@ -15,6 +11,8 @@ Usage example: Classify pixels in an image corresponding to skin, and not skin (
 During the classification phase each pixel is treated individually from one another - one pixel being classified as a 'skin' pixel plays no role in the classification of its neighbours. Of course, this shows there is room for improvement (a different model altogether, such as a probabilistic graphical model, Ising representation, etc). A quirky consequence of this is that you could have alternating classes for neighbouring pixels - skin, not skin, skin, not skin, etc (obviously not the case observed 'in the wild')!
 
 Note also that this model is heavily reliant on the colours in each pixel (this is what the gaussians are fitting), and hence pixels of similar colour (for example a red apple and strawberries) will be modelled similarly, which is what owes to the majority of classification errors in this kind of model. For this reason a gabor filter class is also added to help model texture, although this is not used extensively and is just for implementation purposes (i.e. it works, but its parameters are not included in the automatic hyperparameter tuning stage currently). Feel free to modify this and submit a pull request.
+
+Finally, I have not added in a method for cross-validation, which would definitely help with preventing over-fitting during the `tune` method. This could easily be added (for example a k-fold or monte-carlo cross validation method) but I left it out as the purpose of this was to simply provide an implementation of the mixture of gaussians model. Feel free to add it and submit a pull request, however.
 
 ## Usage
 
@@ -63,4 +61,57 @@ The full implementation with example images can be seen in `implementation.py`.
 
 ## Implementation Details & Results
 
-To be updated.. (mathematical discussion on the results achieved and the model implementation itself)
+Below are the results of running the model (pipeline 2 with hyperparameter optimisation) as provided in `implementation.py` with and without the gabor filter (for comparison). Note that I have set `results=True` in the tune step to yield the ROC curves. `./images/6.jpg` is used to show the power of the model, and `./images/5.jpg` to show its weaknesses. As discussed earlier, similar colours can lead to bad classification, (in the case of `./images/5.jpg`) and hence the low F1 score. This is where the gabor filter can help, by discriminating by textures as well as colours.
+
+### Without Gabor Filter
+
+**Model results:**
+
+Best F1 score: 0.467 for threshold of 0.74 and k = 4
+
+Best ROC score: 0.698 for threshold of 0.58 and k = 4
+
+**ROC curve:**
+
+![nogabor_ROC](./results/nogabor/ROC.png)
+
+**Running model on test data:**
+
+Image [./images/5.jpg]: F1 = 0.2587, ROC = 0.4339
+Image [./images/6.jpg]: F1 = 0.5991, ROC = 0.5129
+
+`./images/5.jpg`:
+
+![nogabor_1](./results/nogabor/1.png)
+
+`./images/6.jpg`:
+
+![nogabor_2](./results/nogabor/2.png)
+
+
+### With Gabor Filter
+
+This uses the default gabor filter parameters provided in `Gabor.py` with no optimisation.
+
+**Model results:**
+
+Best F1 score: 0.504 for threshold of 0.76 and k = 5
+
+Best ROC score: 0.703 for threshold of 0.55 and k = 3
+
+**ROC curve:**
+
+![gabor_ROC](./results/gabor/ROC.png)
+
+**Running model on test data:**
+
+Image [./images/5.jpg]: F1 = 0.2617, ROC = 0.4312
+Image [./images/6.jpg]: F1 = 0.7388, ROC = 0.6658
+
+`./images/5.jpg`:
+
+![gabor_1](./results/gabor/1.png)
+
+`./images/6.jpg`:
+
+![gabor_2](./results/gabor/2.png)
