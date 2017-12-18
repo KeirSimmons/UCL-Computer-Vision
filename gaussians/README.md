@@ -120,3 +120,7 @@ Image [./images/5.jpg]: F1 = 0.2617, ROC = 0.4312
 Image [./images/6.jpg]: F1 = 0.7388, ROC = 0.6658
 
 ![gabor_2](./results/gabor/2.png)
+
+## Discussion
+
+The model works well considering its limitations. As expected, accuracy on images with similar colours as the class is very low (image A).  This is because the red and green fruits match colours of the apples labeled in the training set. A larger train set would help this slightly by lowering the variance of the model (less uncertainty). But the model is still limited by just looking at the colour data. The gabor filter allows the texture of the image to also be considered (which allows differentiation of fruit regardless of colour), and this was seen to immediately improve the classification even without modifying the initial gabor filter parameters. To achieve even better results, these parameters could be treated as hyper parameters of the model and tuned accordingly (omitted in my code).
