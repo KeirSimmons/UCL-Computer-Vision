@@ -61,7 +61,7 @@ The full implementation with example images can be seen in `implementation.py`.
 
 # Implementation Details & Results
 
-Below are the results of running the model (pipeline 2 with hyperparameter optimisation) as provided in `implementation.py` with and without the gabor filter (for comparison). Note that I have set `results=True` in the tune step to yield the ROC curves. `./images/6.jpg` is used to show the power of the model, and `./images/5.jpg` to show its weaknesses. As discussed earlier, similar colours can lead to bad classification, (in the case of `./images/5.jpg`) and hence the low F1 score. This is where the gabor filter can help, by discriminating by textures as well as colours.
+Below are the results of running the model (pipeline 2 with hyperparameter optimisation) as provided in `implementation.py` with and without the gabor filter (for comparison) to classify apples and 'not apples'. Note that I have set `results=True` in the tune step to yield the ROC curves. `./images/6.jpg` is used to show the power of the model, and `./images/5.jpg` to show its weaknesses. As discussed earlier, similar colours can lead to bad classification, (in the case of `./images/5.jpg`) and hence the low F1 score. This is where the gabor filter can help, by discriminating by textures as well as colours.
 
 ## Test Images
 
