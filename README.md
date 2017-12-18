@@ -7,4 +7,4 @@ The `gaussians` directory includes an implementation of a pixel-by-pixel classif
 
 The example code shows how to train a model to classify pixels as 'apples' or 'not apples' as below:
 
-![gabor_2](./gaussian/results/gabor/2.png)
+![gaussians](./gaussians/results/gabor/2.png)
