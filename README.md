@@ -1,5 +1,7 @@
-# computer_vision
-Various mini-projects in the computer vision field, with inspiration from the Machine Vision course I took at UCL (MSc in Computational Statistics and Machine Learning)
+# UCL Machine Vision
+Coursework projects taken on the Machine Vision course at UCL, as part of the MSc in Computational Statistics & Machine Learning.
+
+Currently only one project has been added, once I have time I will add the rest.
 
 ## Project 1: Mixture of Gaussians - Pixel-by-Pixel Classification
 
